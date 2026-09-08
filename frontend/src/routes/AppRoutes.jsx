@@ -8,6 +8,8 @@ import RoomsLabs from "../pages/admin/RoomsLabs";
 import Modules from "../pages/admin/Modules";
 import Lecturers from "../pages/admin/Lecturers";
 import ScheduleManagement from "../pages/admin/ScheduleManagement";
+import Cancellations from "../pages/admin/Cancellations";
+import Announcements from "../pages/admin/Announcements";
 
 export default function AppRoutes() {
   return (
@@ -25,6 +27,10 @@ export default function AppRoutes() {
           <Route path="lecturers" element={<Lecturers />} />
 
           <Route path="schedule" element={<ScheduleManagement />} />
+
+          <Route path="cancellations" element={<Cancellations />} />
+
+          <Route path="announcements" element={<Announcements />} />
         </Route>
       </Routes>
     </BrowserRouter>
