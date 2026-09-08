@@ -1,47 +1,37 @@
 export const lecturers = [
   {
-    id: 1,
-    name: "Dr. N. Perera",
-    employeeId: "LEC001",
-    department: "Information Technology",
-    email: "n.perera@sparkline.edu",
-     phone: "0771234567",
-    specialization: "Database Systems",
+    id:1,
+    employeeId:"EMP001",
+    name:"Dr. Nimal Perera",
+    department:"Computing",
+    email:"nimal.perera@sparkline.edu",
+    phone:"0771234567",
+    specialization:"Software Engineering",
+     avatar:""
   },
+
+
   {
-    id: 2,
-    name: "Mr. K. Silva",
-    employeeId: "LEC002",
-    department: "Computer Science",
-    email: "k.silva@sparkline.edu",
-    phone: "0771237894",
-    specialization: "Computer Networks",
+    id:2,
+    employeeId:"EMP002",
+    name:"Mr. Kasun Silva",
+    department:"Computing",
+    email:"kasun.silva@sparkline.edu",
+    phone:"0719876543",
+    specialization:"Database Systems",
+      avatar:""
   },
+
+
   {
-    id: 3,
-    name: "Ms. R. Fonseka",
-    employeeId: "LEC003",
-    department: "Software Engineering",
-    email: "r.fonseka@sparkline.edu",
-    phone: "0771789467",
-    specialization: "Software Design",
-  },
-  {
-    id: 4,
-    name: "Dr. A. Wickrama",
-    employeeId: "LEC004",
-    department: "Data Science",
-    email: "a.wickrama@sparkline.edu",
-    phone: "0771478567",
-    specialization: "Machine Learning",
-  },
-  {
-    id: 5,
-    name: "Dr. H. Gunawardena",
-    employeeId: "LEC005",
-    department: "Information Systems",
-    email: "h.gunawardena@sparkline.edu",
-    phone: "0771884567",
-    specialization: "Statistics",
-  },
+    id:3,
+    employeeId:"EMP003",
+    name:"Dr. Anu Wickrama",
+    department:"Engineering",
+    email:"anu.w@sparkline.edu",
+    phone:"0765554444",
+    specialization:"Computer Networks",
+     avatar:""
+  }
+
 ];
