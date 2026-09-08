@@ -22,51 +22,10 @@ export default function Cancellations() {
     <div className="space-y-6">
       {/* Page Header */}
 
-      <div
-        className="
-        flex
-        justify-between
-        items-center
-        "
-      >
-        <div>
-          <h1
-            className="
-            text-xl
-            font-bold
-            text-slate-900
-            "
-          >
-            Cancellations & Reschedules
-          </h1>
-
-          <p
-            className="
-            text-sm
-            text-slate-500
-            mt-1
-            "
-          >
-            Manage cancelled sessions and schedule changes
-          </p>
-        </div>
-
-        <button
-          className="
-          bg-[#0b1220]
-          text-white
-          px-4
-          py-2
-          rounded-lg
-          text-sm
-          font-semibold
-          hover:bg-slate-800
-          transition
-          "
-        >
-          + Create Change
-        </button>
-      </div>
+      <PageHeader
+        title="Cancellations & Reschedules"
+        description="Manage cancelled sessions and schedule changes"
+      />
 
       {/* Filters */}
 

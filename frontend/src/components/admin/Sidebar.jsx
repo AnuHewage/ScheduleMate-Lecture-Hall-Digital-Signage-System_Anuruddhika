@@ -1,6 +1,10 @@
 import { sidebarSections } from "../../data/sidebarData";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <aside
       className="
@@ -58,10 +62,13 @@ export default function Sidebar() {
             {section.items.map((item) => {
               const Icon = item.icon;
 
+              const active = location.pathname === item.path;
+
               return (
                 <button
                   key={item.name}
-                  className="
+                  onClick={() => navigate(item.path)}
+                  className={`
                     w-full
                     flex
                     items-center
@@ -70,12 +77,17 @@ export default function Sidebar() {
                     py-2
                     rounded-md
                     text-sm
-                    hover:bg-slate-800
-                    hover:text-white
                     transition
-                  "
+
+                    ${
+                      active
+                        ? "bg-slate-800 text-white shadow-inner border-l-4 border-yellow-500"
+                        : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                    }
+                  `}
                 >
                   <Icon size={17} className="shrink-0" />
+
                   <span className="whitespace-nowrap text-[13px] text-left">
                     {item.name}
                   </span>

@@ -1,4 +1,4 @@
-export default function RoomTable({ rooms }) {
+export default function RoomTable({ rooms, onEdit, onAdd }) {
   return (
     <div
       className="
@@ -22,27 +22,21 @@ export default function RoomTable({ rooms }) {
         items-center
         "
       >
-        <h2
-          className="
-          font-semibold
-          text-slate-900
-          "
-        >
-          Rooms & Labs
-        </h2>
+        <h2 className="font-semibold text-slate-900">Rooms & Labs</h2>
 
         <button
+          onClick={onAdd}
           className="
-          bg-[#0b1220]
-          text-white
-          px-4
-          py-2
-          rounded-lg
-          text-sm
-          font-semibold
-          hover:bg-slate-800
-          transition
-          "
+  bg-[#0b1220]
+  text-white
+  px-4
+  py-2
+  rounded-lg
+  text-sm
+  font-semibold
+  hover:bg-slate-800
+  transition
+  "
         >
           + Add Room
         </button>
@@ -50,12 +44,7 @@ export default function RoomTable({ rooms }) {
 
       {/* Table */}
 
-      <table
-        className="
-        w-full
-        text-sm
-        "
-      >
+      <table className="w-full text-sm">
         <thead>
           <tr
             className="
@@ -78,6 +67,8 @@ export default function RoomTable({ rooms }) {
             <th>Capacity</th>
 
             <th>Status</th>
+
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -133,6 +124,22 @@ export default function RoomTable({ rooms }) {
                 >
                   {room.status}
                 </span>
+              </td>
+
+              {/* Action */}
+
+              <td>
+                <button
+                  onClick={() => onEdit(room)}
+                  className="
+                  text-blue-600
+                  text-sm
+                  font-semibold
+                  hover:underline
+                  "
+                >
+                  Edit
+                </button>
               </td>
             </tr>
           ))}

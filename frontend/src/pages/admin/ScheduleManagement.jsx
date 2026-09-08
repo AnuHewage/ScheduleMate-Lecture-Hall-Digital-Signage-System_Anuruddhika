@@ -1,53 +1,32 @@
 import { useState } from "react";
 import ScheduleTable from "../../components/admin/ScheduleTable";
 import { schedules } from "../../data/scheduleData";
+import PageHeader from "../../components/admin/PageHeader";
 
 export default function ScheduleManagement() {
-   const [building, setBuilding] = useState("All Buildings");
-   const [status, setStatus] = useState("All Status");
-   const [date, setDate] = useState("");
+  const [building, setBuilding] = useState("All Buildings");
+  const [status, setStatus] = useState("All Status");
+  const [date, setDate] = useState("");
 
-   const filteredSchedules = schedules.filter((schedule) => {
-     const buildingMatch =
-       building === "All Buildings" || schedule.building === building;
+  const filteredSchedules = schedules.filter((schedule) => {
+    const buildingMatch =
+      building === "All Buildings" || schedule.building === building;
 
-     const statusMatch = status === "All Status" || schedule.status === status;
+    const statusMatch = status === "All Status" || schedule.status === status;
 
-     const dateMatch = date === "" || schedule.date === date;
+    const dateMatch = date === "" || schedule.date === date;
 
-     return buildingMatch && statusMatch && dateMatch;
-   });
+    return buildingMatch && statusMatch && dateMatch;
+  });
 
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900">
-            Schedule Management
-          </h1>
-
-          <p className="text-sm text-slate-500 mt-1">
-            Manage lecture hall schedules, sessions and room allocations
-          </p>
-        </div>
-
-        <button
-          className="
-          bg-[#0b1220]
-          text-white
-          px-4
-          py-2
-          rounded-lg
-          text-sm
-          font-semibold
-          hover:bg-slate-800
-          transition
-          "
-        >
-          + Create Session
-        </button>
-      </div>
+      <PageHeader
+        title="Schedule Management"
+        description="Manage lecture hall schedules, sessions and room allocations"
+        actionText="Create Session"
+      />
 
       {/* Filters */}
 

@@ -69,7 +69,7 @@ export const sidebarSections = [
       {
         name: "Schedule Management",
         icon: CalendarClock,
-        path: "/admin/schedules",
+        path: "/admin/schedule",
       },
       {
         name: "Cancellations & Reschedules",
@@ -86,7 +86,7 @@ export const sidebarSections = [
       {
         name:"Notices & Announcements",
         icon:Megaphone,
-        path:"/admin/notices"
+        path:"/admin/announcements"
       }
     ]
   },

@@ -1,5 +1,6 @@
 import ModuleTable from "../../components/admin/ModuleTable";
 import { modules } from "../../data/moduleData";
+import PageHeader from "../../components/admin/PageHeader";
 
 export default function Modules() {
   return (
@@ -10,27 +11,10 @@ export default function Modules() {
     >
       {/* Page Header */}
 
-      <div>
-        <h1
-          className="
-          text-2xl
-          font-bold
-          text-slate-900
-          "
-        >
-          Modules
-        </h1>
-
-        <p
-          className="
-          text-sm
-          text-slate-500
-          mt-1
-          "
-        >
-          Manage academic modules offered by Sparkline Academy
-        </p>
-      </div>
+      <PageHeader
+        title="Module Management"
+        description="Manage academic modules and module information"
+      />
 
       {/* Module Table */}
 

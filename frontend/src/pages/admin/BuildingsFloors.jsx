@@ -1,47 +1,15 @@
 import { buildings } from "../../data/buildingData";
+import PageHeader from "../../components/admin/PageHeader";
 
 export default function BuildingsFloors() {
   return (
     <div className="space-y-6">
-      {/* Header */}
-
-      <div className="flex justify-between items-center">
-        <div>
-          <h1
-            className="
-            text-xl
-            font-bold
-            text-slate-900
-          "
-          >
-            Buildings & Floors
-          </h1>
-
-          <p
-            className="
-            text-sm
-            text-slate-500
-            mt-1
-          "
-          >
-            Manage academy buildings, floors and floor-side locations
-          </p>
-        </div>
-
-        <button
-          className="
-            bg-[#0b1220]
-            text-white
-            px-4
-            py-2
-            rounded-lg
-            text-sm
-            font-semibold
-          "
-        >
-          + Add Building
-        </button>
-      </div>
+      {/* Page Header */}
+      <PageHeader
+        title="Buildings & Floors"
+        description="Manage academy buildings, floors and floor-side locations"
+        actionText="Add Building"
+      />
 
       {/* Building Cards */}
 

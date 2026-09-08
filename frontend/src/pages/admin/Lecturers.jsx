@@ -1,5 +1,6 @@
 import LecturerTable from "../../components/admin/LecturerTable";
 import { lecturers } from "../../data/lecturerData";
+import PageHeader from "../../components/admin/PageHeader";
 
 export default function Lecturers() {
   return (
@@ -10,27 +11,10 @@ export default function Lecturers() {
     >
       {/* Page Header */}
 
-      <div>
-        <h1
-          className="
-          text-2xl
-          font-bold
-          text-slate-900
-          "
-        >
-          Lecturers
-        </h1>
-
-        <p
-          className="
-          text-sm
-          text-slate-500
-          mt-1
-          "
-        >
-          Manage lecturer profiles and academic information
-        </p>
-      </div>
+      <PageHeader
+        title="Lecturer Management"
+        description="Manage lecturer information and assignments"
+      />
 
       {/* Lecturer Table */}
 

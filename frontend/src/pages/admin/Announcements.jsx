@@ -1,57 +1,17 @@
 import NoticeTable from "../../components/admin/NoticeTable";
 import { notices } from "../../data/noticeData";
+import PageHeader from "../../components/admin/PageHeader";
 
 export default function Announcements() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
 
-      <div
-        className="
-        flex
-        justify-between
-        items-center
-        "
-      >
-        <div>
-          <h1
-            className="
-            text-xl
-            font-bold
-            text-slate-900
-            "
-          >
-            Notices & Announcements
-          </h1>
-
-          <p
-            className="
-            text-sm
-            text-slate-500
-            mt-1
-            "
-          >
-            Manage announcements displayed on digital signage screens
-          </p>
-        </div>
-
-        <button
-          className="
-          bg-[#0b1220]
-          text-white
-          px-4
-          py-2
-          rounded-lg
-          text-sm
-          font-semibold
-          hover:bg-slate-800
-          transition
-          "
-        >
-          + Create Notice
-        </button>
-      </div>
-
+      <PageHeader
+        title="Notices & Announcements"
+        description="Manage academy announcements and notices"
+        actionText="Add Notice"
+      />
       {/* Filters */}
 
       <div
