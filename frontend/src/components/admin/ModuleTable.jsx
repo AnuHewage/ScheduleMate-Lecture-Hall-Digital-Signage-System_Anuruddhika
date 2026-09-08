@@ -1,4 +1,6 @@
-export default function ModuleTable({ modules }) {
+import { Trash2 } from "lucide-react";
+
+export default function ModuleTable({ modules, onEdit, onDelete }) {
   return (
     <div
       className="
@@ -17,9 +19,6 @@ export default function ModuleTable({ modules }) {
         py-4
         border-b
         border-gray-200
-        flex
-        justify-between
-        items-center
         "
       >
         <h2
@@ -30,22 +29,6 @@ export default function ModuleTable({ modules }) {
         >
           Modules
         </h2>
-
-        <button
-          className="
-          bg-[#0b1220]
-          text-white
-          px-4
-          py-2
-          rounded-lg
-          text-sm
-          font-semibold
-          hover:bg-slate-800
-          transition
-          "
-        >
-          + Add Module
-        </button>
       </div>
 
       {/* Table */}
@@ -71,9 +54,15 @@ export default function ModuleTable({ modules }) {
 
             <th>Department</th>
 
-            <th>Credits</th>
+            <th>Primary Lecturer</th>
 
-            <th>Semester</th>
+            <th>Sessions / Week</th>
+
+            <th>Type</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -82,42 +71,127 @@ export default function ModuleTable({ modules }) {
             <tr
               key={module.id}
               className="
-              border-b
-              last:border-none
-              hover:bg-gray-50
-              "
+                border-b
+                last:border-none
+                hover:bg-gray-50
+                "
             >
+              {/* Code */}
+
               <td
                 className="
-                px-5
-                py-4
-                font-semibold
-                text-slate-800
-                "
+                  px-5
+                  py-4
+                  font-semibold
+                  text-slate-800
+                  "
               >
-                {module.code}
+                {module.moduleCode}
               </td>
 
-              <td>{module.name}</td>
+              {/* Name */}
+
+              <td>
+                <div
+                  className="
+                    font-medium
+                    text-slate-700
+                    "
+                >
+                  {module.moduleName}
+                </div>
+              </td>
+
+              {/* Department */}
 
               <td>{module.department}</td>
 
-              <td>{module.credits}</td>
+              {/* Lecturer */}
+
+              <td
+                className="
+                  text-slate-600
+                  "
+              >
+                {module.primaryLecturer}
+              </td>
+
+              {/* Sessions */}
+              <td
+                className="
+  text-slate-700
+  font-medium
+  "
+              >
+                {module.sessionsPerWeek}
+              </td>
+
+              {/* Type */}
+
+              <td
+                className="
+ text-slate-600
+ "
+              >
+                {module.sessionTypes.join(" / ")}
+              </td>
+
+              {/* Status */}
 
               <td>
                 <span
-                  className="
-                  px-3
-                  py-1
-                  rounded-full
-                  bg-blue-100
-                  text-blue-600
-                  text-xs
-                  font-semibold
-                  "
+                  className={`
+                    px-3
+                    py-1
+                    rounded-full
+                    text-xs
+                    font-semibold
+
+                    ${
+                      module.status === "Active"
+                        ? "bg-green-100 text-green-600"
+                        : "bg-red-100 text-red-600"
+                    }
+
+                    `}
                 >
-                  {module.semester}
+                  {module.status}
                 </span>
+              </td>
+
+              {/* Actions */}
+
+              <td>
+                <div
+                  className="
+ flex
+ items-center
+ gap-4
+ "
+                >
+                  <button
+                    onClick={() => onEdit(module)}
+                    className="
+ text-blue-600
+ hover:text-blue-800
+ text-sm
+ font-medium
+ "
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => onDelete(module.id)}
+                    className="
+ text-red-500
+ hover:text-red-700
+ "
+                    title="Delete Module"
+                  >
+                    <Trash2 size={17} />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

@@ -1,82 +1,43 @@
 export const modules = [
   {
-    id: 1,
-    code: "IT1010",
-    name: "Programming Fundamentals",
-    department: "Information Technology",
-    credits: 3,
-    semester: "Semester 1",
+    id:1,
+
+    moduleCode:"IT1010",
+
+    moduleName:"Programming Fundamentals",
+
+    department:"Computing",
+
+    primaryLecturer:"Dr. N. Perera",
+
+    sessionsPerWeek:3,
+
+    sessionTypes:[
+      "Lecture",
+      "Lab"
+    ],
+
+    status:"Active"
   },
+
+
   {
-    id: 2,
-    code: "IT1020",
-    name: "Database Systems",
-    department: "Information Technology",
-    credits: 3,
-    semester: "Semester 1",
-  },
-  {
-    id: 3,
-    code: "SE2040",
-    name: "Software Design",
-    department: "Software Engineering",
-    credits: 3,
-    semester: "Semester 2",
-  },
-  {
-    id: 4,
-    code: "CS3110",
-    name: "Computer Networks",
-    department: "Computer Science",
-    credits: 3,
-    semester: "Semester 2",
-  },
-  {
-    id: 5,
-    code: "DS1050",
-    name: "Statistics for Computing",
-    department: "Data Science",
-    credits: 2,
-    semester: "Semester 1",
-  },
-  {
-    id: 6,
-    code: "IT2205",
-    name: "Web Application Development",
-    department: "Information Technology",
-    credits: 3,
-    semester: "Semester 2",
-  },
-  {
-    id: 7,
-    code: "SE3050",
-    name: "Software Testing",
-    department: "Software Engineering",
-    credits: 3,
-    semester: "Semester 1",
-  },
-  {
-    id: 8,
-    code: "AI3100",
-    name: "Artificial Intelligence",
-    department: "Computer Science",
-    credits: 3,
-    semester: "Semester 2",
-  },
-  {
-    id: 9,
-    code: "ML3200",
-    name: "Machine Learning",
-    department: "Data Science",
-    credits: 3,
-    semester: "Semester 2",
-  },
-  {
-    id: 10,
-    code: "UX2100",
-    name: "User Experience Design",
-    department: "Information Systems",
-    credits: 2,
-    semester: "Semester 1",
-  },
+    id:2,
+
+    moduleCode:"IT2205",
+
+    moduleName:"Database Systems",
+
+    department:"Computing",
+
+    primaryLecturer:"Mr. K. Silva",
+
+    sessionsPerWeek:2,
+
+    sessionTypes:[
+      "Lecture"
+    ],
+
+    status:"Active"
+  }
 ];
