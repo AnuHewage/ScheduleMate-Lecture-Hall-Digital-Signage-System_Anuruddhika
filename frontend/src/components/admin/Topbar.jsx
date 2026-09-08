@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
-export default function Topbar({ title = "Dashboard" }) {
+export default function Topbar() {
+  const location = useLocation();
+
+const pageTitles = {
+  "/admin/dashboard": "Dashboard",
+  "/admin/buildings": "Buildings & Floors",
+  "/admin/rooms": "Rooms & Labs",
+  "/admin/modules": "Modules",
+  "/admin/lecturers": "Lecturers",
+  "/admin/schedule": "Schedule Management",
+};
+
+const title = pageTitles[location.pathname] || "Dashboard";
+
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {

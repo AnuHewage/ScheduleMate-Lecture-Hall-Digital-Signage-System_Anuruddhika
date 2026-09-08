@@ -1,12 +1,5 @@
-import AdminLayout from "./layouts/AdminLayout";
-import Dashboard from "./pages/admin/Dashboard";
+import AppRoutes from "./routes/AppRoutes";
 
-function App() {
-  return (
-    <AdminLayout>
-      <Dashboard />
-    </AdminLayout>
-  );
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App;
