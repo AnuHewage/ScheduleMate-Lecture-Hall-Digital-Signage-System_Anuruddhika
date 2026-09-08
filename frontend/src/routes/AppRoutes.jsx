@@ -8,8 +8,11 @@ import RoomsLabs from "../pages/admin/RoomsLabs";
 import Modules from "../pages/admin/Modules";
 import Lecturers from "../pages/admin/Lecturers";
 import ScheduleManagement from "../pages/admin/ScheduleManagement";
-import Cancellations from "../pages/admin/Cancellations";
-import Announcements from "../pages/admin/Announcements";
+import Cancellations from "../pages/admin/CancellationReschedule";
+import Announcements from "../pages/admin/NoticesAnnouncements";
+import CreateSession from "../pages/admin/CreateSession";
+import CancellationReschedule from "../pages/admin/CancellationReschedule";
+
 
 export default function AppRoutes() {
   return (
@@ -31,6 +34,10 @@ export default function AppRoutes() {
           <Route path="cancellations" element={<Cancellations />} />
 
           <Route path="announcements" element={<Announcements />} />
+
+          <Route path="create-session" element={<CreateSession />} />
+
+          <Route path="cancellation-reschedule" element={<CancellationReschedule />} />
         </Route>
       </Routes>
     </BrowserRouter>

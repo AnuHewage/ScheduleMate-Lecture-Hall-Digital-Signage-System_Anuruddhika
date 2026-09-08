@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Topbar() {
   const location = useLocation();
+  const navigate = useNavigate();
 
-const pageTitles = {
-  "/admin/dashboard": "Dashboard",
-  "/admin/buildings": "Buildings & Floors",
-  "/admin/rooms": "Rooms & Labs",
-  "/admin/modules": "Modules",
-  "/admin/lecturers": "Lecturers",
-  "/admin/schedule": "Schedule Management",
-};
+  const pageTitles = {
+    "/admin/dashboard": "Dashboard",
+    "/admin/buildings": "Buildings & Floors",
+    "/admin/rooms": "Rooms & Labs",
+    "/admin/modules": "Modules",
+    "/admin/lecturers": "Lecturers",
+    "/admin/schedule": "Schedule Management",
+    "/admin/create-session": "Create New Session",
+  };
 
-const title = pageTitles[location.pathname] || "Dashboard";
+  const title = pageTitles[location.pathname] || "Dashboard";
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -37,28 +39,32 @@ const title = pageTitles[location.pathname] || "Dashboard";
     minute: "2-digit",
   });
 
+  const handleNewSession = () => {
+    navigate("/admin/create-session");
+  };
+
   return (
     <div
       className="
-    bg-white
-    border-b
-    border-gray-200
-    px-6
-    py-4
-    flex
-    items-center
-    justify-between
-  "
+      bg-white
+      border-b
+      border-gray-200
+      px-6
+      py-4
+      flex
+      items-center
+      justify-between
+      "
     >
       {/* Left */}
 
       <div>
         <h1
           className="
-text-xl
-font-bold
-text-slate-900
-"
+          text-xl
+          font-bold
+          text-slate-900
+          "
         >
           {title}
         </h1>
@@ -68,24 +74,24 @@ text-slate-900
 
       <div
         className="
-flex
-items-center
-gap-3
-"
+        flex
+        items-center
+        gap-3
+        "
       >
-        {/* Date */}
+        {/* Date & Time */}
 
         <div
           className="
-bg-gray-50
-border
-border-gray-200
-rounded-lg
-px-3
-py-2
-text-sm
-text-slate-600
-"
+          bg-gray-50
+          border
+          border-gray-200
+          rounded-lg
+          px-3
+          py-2
+          text-sm
+          text-slate-600
+          "
         >
           {formattedDate} — {formattedTime}
         </div>
@@ -93,20 +99,22 @@ text-slate-600
         {/* New Session */}
 
         <button
+          type="button"
+          onClick={handleNewSession}
           className="
-flex
-items-center
-gap-2
-bg-[#0b1220]
-text-white
-px-4
-py-2
-rounded-lg
-text-sm
-font-semibold
-hover:bg-slate-800
-transition
-"
+          flex
+          items-center
+          gap-2
+          bg-[#0b1220]
+          text-white
+          px-4
+          py-2
+          rounded-lg
+          text-sm
+          font-semibold
+          hover:bg-slate-800
+          transition
+          "
         >
           <Plus size={16} />
           New Session
@@ -116,17 +124,17 @@ transition
 
         <div
           className="
-w-10
-h-10
-rounded-full
-bg-yellow-500
-flex
-items-center
-justify-center
-font-bold
-text-sm
-text-black
-"
+          w-10
+          h-10
+          rounded-full
+          bg-yellow-500
+          flex
+          items-center
+          justify-center
+          font-bold
+          text-sm
+          text-black
+          "
         >
           SJ
         </div>

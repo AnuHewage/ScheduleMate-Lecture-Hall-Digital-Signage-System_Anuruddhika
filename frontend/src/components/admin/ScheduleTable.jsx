@@ -48,15 +48,21 @@ export default function ScheduleTable({ schedules }) {
           >
             <th className="px-5 py-3">Date</th>
 
+            <th>Day</th>
+
             <th>Time</th>
 
-            <th>Room</th>
-
             <th>Module</th>
+
+            <th>Type</th>
+
+            <th>Room</th>
 
             <th>Lecturer</th>
 
             <th>Status</th>
+
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -65,77 +71,109 @@ export default function ScheduleTable({ schedules }) {
             <tr
               key={schedule.id}
               className="
-              border-b
-              last:border-none
-              hover:bg-gray-50
-              "
+                border-b
+                last:border-none
+                hover:bg-gray-50
+                "
             >
               <td
                 className="
-                px-5
-                py-4
-                font-medium
-                text-slate-800
-                "
+                  px-5
+                  py-4
+                  font-medium
+                  text-slate-800
+                  "
               >
                 {schedule.date}
               </td>
 
+              <td>{schedule.day}</td>
+
               <td>{schedule.time}</td>
 
               <td>
-                <div
+                <span
                   className="
-                  font-semibold
-                  text-slate-700
-                  "
+                    font-medium
+                    text-slate-800
+                    "
                 >
-                  {schedule.room}
-                </div>
-
-                <div
-                  className="
-                  text-xs
-                  text-slate-400
-                  "
-                >
-                  {schedule.building} · {schedule.floor} · {schedule.side}
-                </div>
+                  {schedule.module}
+                </span>
               </td>
+
+              <td>{schedule.type}</td>
 
               <td>
-                <div className="font-medium">{schedule.module}</div>
+                <span
+                  className="
+                    font-semibold
+                    text-slate-700
+                    "
+                >
+                  {schedule.room}
+                </span>
               </td>
 
-              <td
-                className="
-                text-slate-600
-                "
-              >
-                {schedule.lecturer}
-              </td>
+              <td>{schedule.lecturer}</td>
+
+              {/* Status */}
 
               <td>
                 <span
                   className={`
-                  px-3
-                  py-1
-                  rounded-full
-                  text-xs
-                  font-semibold
 
-                  ${
-                    schedule.status === "Scheduled"
-                      ? "bg-green-100 text-green-600"
-                      : schedule.status === "Rescheduled"
-                        ? "bg-yellow-100 text-yellow-600"
-                        : "bg-red-100 text-red-600"
-                  }
+                    px-3
+                    py-1
+                    rounded-full
+                    text-xs
+                    font-semibold
 
-                  `}
+
+                    ${
+                      schedule.status === "Ongoing"
+                        ? "bg-blue-100 text-blue-600"
+                        : schedule.status === "Scheduled"
+                          ? "bg-green-100 text-green-600"
+                          : schedule.status === "Cancelled"
+                            ? "bg-red-100 text-red-600"
+                            : schedule.status === "Rescheduled"
+                              ? "bg-yellow-100 text-yellow-600"
+                              : "bg-gray-100 text-gray-600"
+                    }
+
+                    `}
                 >
                   {schedule.status}
                 </span>
+              </td>
+
+              {/* Action */}
+
+              <td>
+                {schedule.status === "Cancelled" ? (
+                  <button
+                    className="
+                      text-green-600
+                      text-sm
+                      font-semibold
+                      "
+                  >
+                    Restore
+                  </button>
+                ) : schedule.status === "Completed" ? (
+                  <span>-</span>
+                ) : (
+                  <button
+                    className="
+                      text-red-500
+                      text-sm
+                      font-semibold
+                      "
+                  >
+                    Cancel
+                  </button>
+                )}
               </td>
             </tr>
           ))}

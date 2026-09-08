@@ -1,4 +1,13 @@
-export default function PageHeader({ title, description, actionText }) {
+import { useNavigate } from "react-router-dom";
+
+export default function PageHeader({
+  title,
+  description,
+  actionText,
+  actionPath,
+}) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-between items-center">
       {/* Title */}
@@ -31,6 +40,7 @@ export default function PageHeader({ title, description, actionText }) {
 
       {actionText && (
         <button
+          onClick={() => navigate(actionPath)}
           className="
           bg-[#0b1220]
           text-white
