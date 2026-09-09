@@ -6,6 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import AdminLayout from "../layouts/AdminLayout";
 
 import Dashboard from "../pages/admin/Dashboard";
+import LiveRoomStatus from "../pages/admin/LiveRoomStatus";
 import BuildingsFloors from "../pages/admin/BuildingsFloors";
 import RoomsLabs from "../pages/admin/RoomsLabs";
 import Modules from "../pages/admin/Modules";
@@ -36,6 +37,7 @@ export default function AppRoutes() {
         >
           <Route path="dashboard" element={<Dashboard />} />
 
+          <Route path="status" element={<LiveRoomStatus />} />
           <Route path="buildings" element={<BuildingsFloors />} />
 
           <Route path="rooms" element={<RoomsLabs />} />
