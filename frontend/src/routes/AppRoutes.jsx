@@ -12,6 +12,7 @@ import Cancellations from "../pages/admin/CancellationReschedule";
 import Announcements from "../pages/admin/NoticesAnnouncements";
 import CreateSession from "../pages/admin/CreateSession";
 import CancellationReschedule from "../pages/admin/CancellationReschedule";
+import DisplayConfiguration from "../pages/admin/DisplayConfiguration";
 
 export default function AppRoutes() {
   return (
@@ -40,6 +41,8 @@ export default function AppRoutes() {
             path="cancellation-reschedule"
             element={<CancellationReschedule />}
           />
+
+          <Route path="devices" element={<DisplayConfiguration />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -96,7 +96,7 @@ export const sidebarSections = [
     title:"Devices",
     items:[
       {
-        name:"Display Devices",
+        name:"Display Configuration",
         icon:MonitorSmartphone,
         path:"/admin/devices"
       }

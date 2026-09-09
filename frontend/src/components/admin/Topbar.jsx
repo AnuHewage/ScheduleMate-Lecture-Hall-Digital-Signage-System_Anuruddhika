@@ -14,6 +14,9 @@ export default function Topbar() {
     "/admin/lecturers": "Lecturers",
     "/admin/schedule": "Schedule Management",
     "/admin/create-session": "Create New Session",
+    "/admin/cancellations": "Cancellations & Reschedules",
+    "/admin/announcements": "Notices & Announcements",
+    "/admin/devices": "Display Configuration",
   };
 
   const title = pageTitles[location.pathname] || "Dashboard";
