@@ -3,15 +3,19 @@ export const buildings = [
     id: 1,
     code: "M",
     name: "Main Building",
-    floors: 10,
-    sides: ["A", "B"],
+    totalFloors: 10,
+    sides: ["A Side", "B Side"],
+
+    specialFloors: [3, 5, 6],
   },
 
   {
     id: 2,
     code: "N",
     name: "New Building",
-    floors: 14,
-    sides: ["G", "F"],
+    totalFloors: 14,
+    sides: ["G Side", "F Side"],
+
+    specialFloors: [3, 10, 12],
   },
 ];

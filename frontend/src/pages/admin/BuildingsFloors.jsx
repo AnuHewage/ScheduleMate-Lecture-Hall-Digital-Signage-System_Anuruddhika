@@ -1,10 +1,22 @@
-import { buildings } from "../../data/buildingData";
+import { useState } from "react";
+
 import PageHeader from "../../components/admin/PageHeader";
 
+import BuildingCard from "../../components/admin/BuildingCard";
+
+import FloorTable from "../../components/admin/FloorTable";
+
+import { buildings } from "../../data/buildingData";
+
 export default function BuildingsFloors() {
+  const [selectedBuilding, setSelectedBuilding] = useState(null);
+
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
+    <div
+      className="
+      space-y-6
+      "
+    >
       <PageHeader
         title="Buildings & Floors"
         description="Manage academy buildings, floors and floor-side locations"
@@ -16,77 +28,40 @@ export default function BuildingsFloors() {
       <div
         className="
         grid
-        grid-cols-2
+        grid-cols-1
+        md:grid-cols-2
         gap-5
-      "
+        w-full
+        "
       >
         {buildings.map((building) => (
-          <div
+          <BuildingCard
             key={building.id}
-            className="
-              bg-white
-              border
-              border-gray-200
-              rounded-xl
-              p-5
-            "
-          >
-            <h2
-              className="
-              text-lg
-              font-bold
-              text-slate-900
-            "
-            >
-              {building.name}
-            </h2>
-
-            <div
-              className="
-              mt-4
-              space-y-2
-              text-sm
-              text-slate-600
-            "
-            >
-              <p>
-                Floors :
-                <span className="font-semibold text-slate-900">
-                  {" "}
-                  {building.floors}
-                </span>
-              </p>
-
-              <p>
-                Floor Sides :
-                <span className="font-semibold text-slate-900">
-                  {" "}
-                  {building.sides}
-                </span>
-              </p>
-
-              <p>
-                Total Rooms :
-                <span className="font-semibold text-slate-900">
-                  {" "}
-                  {building.rooms}
-                </span>
-              </p>
-            </div>
-
-            <button
-              className="
-                mt-5
-                text-sm
-                text-blue-600
-                font-semibold
-              "
-            >
-              View Floors →
-            </button>
-          </div>
+            building={building}
+            expanded={selectedBuilding === building.id}
+            onView={() => {
+              setSelectedBuilding(
+                selectedBuilding === building.id ? null : building.id,
+              );
+            }}
+            onEdit={() => alert("Edit Building")}
+          />
         ))}
       </div>
+
+      {/* Floor Table */}
+
+      {selectedBuilding && (
+        <div
+          className="
+            w-full
+            "
+        >
+          <FloorTable
+            building={buildings.find((item) => item.id === selectedBuilding)}
+          />
+        </div>
+      )}
     </div>
   );
 }

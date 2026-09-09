@@ -1,14 +1,28 @@
 import { useState } from "react";
+
 import ScheduleTable from "../../components/admin/ScheduleTable";
-import { schedules } from "../../data/scheduleData";
+
+import CancelSessionModal from "../../components/admin/CancelSessionModal";
+
+import RescheduleSessionModal from "../../components/admin/RescheduleSessionModal";
+
+import { schedulesData } from "../../data/scheduleData";
+
 import PageHeader from "../../components/admin/PageHeader";
 
-
 export default function ScheduleManagement() {
+  const [schedules, setSchedules] = useState(schedulesData);
 
+  const [selectedSession, setSelectedSession] = useState(null);
+
+  const [showCancel, setShowCancel] = useState(false);
+
+  const [showReschedule, setShowReschedule] = useState(false);
 
   const [building, setBuilding] = useState("All Buildings");
+
   const [floor, setFloor] = useState("All Floors");
+
   const [side, setSide] = useState("All Sides");
 
   const [type, setType] = useState("All Types");
@@ -19,68 +33,89 @@ export default function ScheduleManagement() {
 
   const [search, setSearch] = useState("");
 
+  // Cancel modal open
 
+  const handleCancel = (session) => {
+    setSelectedSession(session);
 
+    setShowCancel(true);
+  };
 
-  const filteredSchedules = schedules.filter((schedule)=>{
+  // Confirm Cancel
 
+  const confirmCancel = (data) => {
+    setSchedules(
+      schedules.map((item) =>
+        item.id === data.id
+          ? {
+              ...item,
+              status: "Cancelled",
+              reason: data.reason,
+            }
+          : item,
+      ),
+    );
 
+    setShowCancel(false);
+
+    setSelectedSession(null);
+  };
+
+  // Reschedule modal open
+
+  const handleReschedule = (session) => {
+    setSelectedSession(session);
+
+    setShowReschedule(true);
+  };
+
+  // Confirm Reschedule
+
+  const confirmReschedule = (data) => {
+    setSchedules(
+      schedules.map((item) =>
+        item.id === data.id
+          ? {
+              ...item,
+
+              status: "Rescheduled",
+
+              newDay: data.day,
+
+              newRoom: data.room,
+
+              newTime: `${data.startTime} - ${data.endTime}`,
+
+              reason: data.reason,
+            }
+          : item,
+      ),
+    );
+
+    setShowReschedule(false);
+
+    setSelectedSession(null);
+  };
+
+  const filteredSchedules = schedules.filter((schedule) => {
     const buildingMatch =
-      building === "All Buildings" ||
-      schedule.building === building;
+      building === "All Buildings" || schedule.building === building;
 
+    const floorMatch = floor === "All Floors" || schedule.floor === floor;
 
+    const sideMatch = side === "All Sides" || schedule.side === side;
 
-    const floorMatch =
-      floor === "All Floors" ||
-      schedule.floor === floor;
+    const typeMatch = type === "All Types" || schedule.type === type;
 
+    const statusMatch = status === "All Status" || schedule.status === status;
 
-
-    const sideMatch =
-      side === "All Sides" ||
-      schedule.side === side;
-
-
-
-    const typeMatch =
-      type === "All Types" ||
-      schedule.type === type;
-
-
-
-    const statusMatch =
-      status === "All Status" ||
-      schedule.status === status;
-
-
-
-    const dateMatch =
-      date === "" ||
-      schedule.date === date;
-
-
+    const dateMatch = date === "" || schedule.date === date;
 
     const searchMatch =
       search === "" ||
-      schedule.module
-      .toLowerCase()
-      .includes(search.toLowerCase())
-
-      ||
-
-      schedule.room
-      .toLowerCase()
-      .includes(search.toLowerCase())
-
-      ||
-
-      schedule.lecturer
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-
-
+      schedule.module.toLowerCase().includes(search.toLowerCase()) ||
+      schedule.room.toLowerCase().includes(search.toLowerCase()) ||
+      schedule.lecturer.toLowerCase().includes(search.toLowerCase());
 
     return (
       buildingMatch &&
@@ -91,13 +126,7 @@ export default function ScheduleManagement() {
       dateMatch &&
       searchMatch
     );
-
-
   });
-
-
-
-
 
   return (
     <div className="space-y-6">
@@ -112,43 +141,34 @@ export default function ScheduleManagement() {
 
       <div
         className="
-        bg-white
-        border
-        border-gray-200
-        rounded-lg
-        p-4
-        flex
-        flex-wrap
-        gap-4
-        "
+bg-white
+border
+rounded-lg
+p-4
+flex
+flex-wrap
+gap-4
+"
       >
-        {/* Search */}
-
         <input
           type="text"
           placeholder="Search module, room or lecturer"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          w-64
-          "
+border
+rounded-lg
+px-3
+py-2
+text-sm
+w-64
+"
         />
 
         <select
           value={building}
           onChange={(e) => setBuilding(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         >
           <option>All Buildings</option>
 
@@ -160,13 +180,7 @@ export default function ScheduleManagement() {
         <select
           value={floor}
           onChange={(e) => setFloor(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         >
           <option>All Floors</option>
 
@@ -182,13 +196,7 @@ export default function ScheduleManagement() {
         <select
           value={side}
           onChange={(e) => setSide(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         >
           <option>All Sides</option>
 
@@ -204,13 +212,7 @@ export default function ScheduleManagement() {
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         >
           <option>All Types</option>
 
@@ -222,13 +224,7 @@ export default function ScheduleManagement() {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         >
           <option>All Status</option>
 
@@ -247,18 +243,39 @@ export default function ScheduleManagement() {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="
-          border
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          "
+          className="border rounded-lg px-3 py-2 text-sm"
         />
       </div>
 
-      <ScheduleTable schedules={filteredSchedules} />
+      <ScheduleTable
+        schedules={filteredSchedules}
+        onCancel={handleCancel}
+        onReschedule={handleReschedule}
+      />
+
+      {showCancel && (
+        <CancelSessionModal
+          session={selectedSession}
+          onClose={() => {
+            setShowCancel(false);
+
+            setSelectedSession(null);
+          }}
+          onConfirm={confirmCancel}
+        />
+      )}
+
+      {showReschedule && (
+        <RescheduleSessionModal
+          session={selectedSession}
+          onClose={() => {
+            setShowReschedule(false);
+
+            setSelectedSession(null);
+          }}
+          onConfirm={confirmReschedule}
+        />
+      )}
     </div>
   );
-
 }

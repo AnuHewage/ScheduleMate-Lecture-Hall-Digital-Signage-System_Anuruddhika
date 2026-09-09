@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AdminLogin from "../pages/auth/AdminLogin";
+import AdminProfile from "../pages/admin/AdminProfile";
 import ProtectedRoute from "./ProtectedRoute";
 
 import AdminLayout from "../layouts/AdminLayout";
@@ -35,6 +36,8 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
+          {/* Profile */}
+          <Route path="profile" element={<AdminProfile />} />
           <Route path="dashboard" element={<Dashboard />} />
 
           <Route path="status" element={<LiveRoomStatus />} />

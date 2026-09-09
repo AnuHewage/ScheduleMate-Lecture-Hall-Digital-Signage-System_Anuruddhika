@@ -1,4 +1,4 @@
-export default function ScheduleTable({ schedules }) {
+export default function ScheduleTable({ schedules, onCancel, onReschedule }) {
   return (
     <div
       className="
@@ -150,29 +150,43 @@ export default function ScheduleTable({ schedules }) {
 
               {/* Action */}
 
-              <td>
+              <td className="px-4">
                 {schedule.status === "Cancelled" ? (
                   <button
                     className="
-                      text-green-600
-                      text-sm
-                      font-semibold
-                      "
+      text-green-600
+      text-sm
+      font-semibold
+      "
                   >
                     Restore
                   </button>
                 ) : schedule.status === "Completed" ? (
                   <span>-</span>
                 ) : (
-                  <button
-                    className="
-                      text-red-500
-                      text-sm
-                      font-semibold
-                      "
-                  >
-                    Cancel
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => onReschedule(schedule)}
+                      className="
+        text-blue-600
+        text-sm
+        font-semibold
+        "
+                    >
+                      Reschedule
+                    </button>
+
+                    <button
+                      onClick={() => onCancel(schedule)}
+                      className="
+        text-red-500
+        text-sm
+        font-semibold
+        "
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 )}
               </td>
             </tr>
