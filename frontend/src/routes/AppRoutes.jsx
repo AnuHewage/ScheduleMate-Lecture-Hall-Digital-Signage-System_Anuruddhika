@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import AdminLogin from "../pages/auth/AdminLogin";
+import ProtectedRoute from "./ProtectedRoute";
+
 import AdminLayout from "../layouts/AdminLayout";
 
 import Dashboard from "../pages/admin/Dashboard";
@@ -8,17 +11,29 @@ import RoomsLabs from "../pages/admin/RoomsLabs";
 import Modules from "../pages/admin/Modules";
 import Lecturers from "../pages/admin/Lecturers";
 import ScheduleManagement from "../pages/admin/ScheduleManagement";
-import Cancellations from "../pages/admin/CancellationReschedule";
-import Announcements from "../pages/admin/NoticesAnnouncements";
-import CreateSession from "../pages/admin/CreateSession";
 import CancellationReschedule from "../pages/admin/CancellationReschedule";
+import NoticesAnnouncements from "../pages/admin/NoticesAnnouncements";
+import CreateSession from "../pages/admin/CreateSession";
 import DisplayConfiguration from "../pages/admin/DisplayConfiguration";
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin" element={<AdminLayout />}>
+        {/* Admin Login */}
+
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Admin Layout */}
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="dashboard" element={<Dashboard />} />
 
           <Route path="buildings" element={<BuildingsFloors />} />
@@ -31,16 +46,11 @@ export default function AppRoutes() {
 
           <Route path="schedule" element={<ScheduleManagement />} />
 
-          <Route path="cancellations" element={<Cancellations />} />
-
-          <Route path="announcements" element={<Announcements />} />
-
           <Route path="create-session" element={<CreateSession />} />
 
-          <Route
-            path="cancellation-reschedule"
-            element={<CancellationReschedule />}
-          />
+          <Route path="cancellations" element={<CancellationReschedule />} />
+
+          <Route path="announcements" element={<NoticesAnnouncements />} />
 
           <Route path="devices" element={<DisplayConfiguration />} />
         </Route>

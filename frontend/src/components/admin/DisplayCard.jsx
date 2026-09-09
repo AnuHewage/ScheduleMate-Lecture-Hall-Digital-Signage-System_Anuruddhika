@@ -75,35 +75,49 @@ text-sm
 
       <div
         className="
-mt-6
-flex
-gap-3
-"
+  mt-6
+  flex
+  gap-3
+  "
       >
+        {/* Configure Button */}
+
         <button
           onClick={onConfigure}
           className="
-flex-1
-border
-rounded-lg
-py-2
-text-sm
-font-semibold
-"
+    flex-1
+    bg-blue-50
+    border
+    border-blue-200
+    text-blue-700
+    rounded-lg
+    py-2
+    text-sm
+    font-semibold
+    hover:bg-blue-100
+    transition
+    "
         >
           Configure
         </button>
 
+        {/* Restart Button */}
+
         <button
           onClick={onRestart}
           className="
-flex-1
-border
-rounded-lg
-py-2
-text-sm
-font-semibold
-"
+    flex-1
+    bg-orange-50
+    border
+    border-orange-200
+    text-orange-700
+    rounded-lg
+    py-2
+    text-sm
+    font-semibold
+    hover:bg-orange-100
+    transition
+    "
         >
           Restart
         </button>
