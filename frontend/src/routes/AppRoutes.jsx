@@ -13,7 +13,6 @@ import Announcements from "../pages/admin/NoticesAnnouncements";
 import CreateSession from "../pages/admin/CreateSession";
 import CancellationReschedule from "../pages/admin/CancellationReschedule";
 
-
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -37,7 +36,10 @@ export default function AppRoutes() {
 
           <Route path="create-session" element={<CreateSession />} />
 
-          <Route path="cancellation-reschedule" element={<CancellationReschedule />} />
+          <Route
+            path="cancellation-reschedule"
+            element={<CancellationReschedule />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

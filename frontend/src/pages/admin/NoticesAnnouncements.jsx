@@ -3,101 +3,139 @@ import { useState } from "react";
 import PageHeader from "../../components/admin/PageHeader";
 import NoticeTable from "../../components/admin/NoticeTable";
 import NoticeModal from "../../components/admin/NoticeModal";
+import EmergencyBroadcastModal from "../../components/admin/EmergencyBroadcastModal";
 
-import { notices as initialNotices } from "../../data/noticeData";
+import { noticeList } from "../../data/noticeData";
 
 export default function NoticesAnnouncements() {
-  const [notices, setNotices] = useState(initialNotices);
+  const [notices, setNotices] = useState(noticeList);
 
-  const [open, setOpen] = useState(false);
+  const [selectedNotice, setSelectedNotice] = useState(null);
 
-  const [selected, setSelected] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSave = (data) => {
-    if (selected) {
+  const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
+
+  // Save Notice
+
+  const handleSave = (notice) => {
+    if (selectedNotice) {
       setNotices(
         notices.map((n) =>
-          n.id === selected.id ? { ...selected, ...data } : n,
+          n.id === selectedNotice.id
+            ? {
+                ...notice,
+                id: selectedNotice.id,
+              }
+            : n,
         ),
       );
     } else {
       setNotices([
         ...notices,
+
         {
+          ...notice,
           id: Date.now(),
-          ...data,
-          createdBy: "Admin - S. Jayalal",
         },
       ]);
     }
 
-    setOpen(false);
-    setSelected(null);
-  };
+    setIsModalOpen(false);
 
-  const handleEdit = (notice) => {
-    setSelected(notice);
-    setOpen(true);
-  };
-
-  const handleDelete = (id) => {
-    setNotices(notices.filter((n) => n.id !== id));
+    setSelectedNotice(null);
   };
 
   return (
     <div className="space-y-6">
       <PageHeader
         title="Notices & Announcements"
-        description="Manage announcements displayed on digital signage"
+        description="Manage messages displayed on digital signage."
         actionText="New Notice"
-        actionPath="#"
+        onAction={() => {
+          setSelectedNotice(null);
+
+          setIsModalOpen(true);
+        }}
       />
+
+      {/* Emergency Banner */}
 
       <div
         className="
-bg-red-900
-text-white
-rounded-xl
-p-5
-flex
-justify-between
-items-center
-"
+      bg-red-900
+      rounded-xl
+      p-6
+      flex
+      justify-between
+      items-center
+      "
       >
         <div>
-          <h2 className="font-semibold">Emergency Announcement</h2>
+          <h2 className="text-white font-semibold">Emergency Announcement</h2>
 
-          <p className="text-sm text-red-200">
-            Broadcast immediately to all displays.
+          <p className="text-red-100 text-sm mt-1">
+            Broadcast immediately to all connected displays.
           </p>
         </div>
 
         <button
+          onClick={() => setIsEmergencyModalOpen(true)}
           className="
-bg-red-500
-px-4
-py-2
-rounded-lg
-"
+        bg-red-500
+        text-white
+        px-4
+        py-2
+        rounded-lg
+        "
         >
-          + Broadcast Emergency
+          Broadcast Emergency
         </button>
       </div>
 
+      {/* Notice Table */}
+
       <NoticeTable
         notices={notices}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
+        onEdit={(notice) => {
+          setSelectedNotice(notice);
+
+          setIsModalOpen(true);
+        }}
+        onDelete={(id) => {
+          const confirmDelete = window.confirm(
+            "Are you sure you want to delete this notice?",
+          );
+
+          if (confirmDelete) {
+            setNotices(notices.filter((n) => n.id !== id));
+          }
+        }}
       />
 
+      {/* Notice Modal */}
+
       <NoticeModal
-        isOpen={open}
-        notice={selected}
+        isOpen={isModalOpen}
+        notice={selectedNotice}
         onClose={() => {
-          setOpen(false);
-          setSelected(null);
+          setIsModalOpen(false);
+
+          setSelectedNotice(null);
         }}
         onSave={handleSave}
+      />
+
+      {/* Emergency Modal */}
+
+      <EmergencyBroadcastModal
+        isOpen={isEmergencyModalOpen}
+        onClose={() => setIsEmergencyModalOpen(false)}
+        onBroadcast={(data) => {
+          console.log("Emergency Broadcast:", data);
+
+          alert("Emergency announcement broadcasted!");
+        }}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-export const notices = [
+export const noticeList = [
   {
     id: 1,
     title: "Library extended hours this week",
@@ -7,7 +7,7 @@ export const notices = [
     type: "General",
     target: "All Displays",
     status: "Active",
-    createdBy: "Admin ",
+    createdBy: "Admin",
   },
 
   {
@@ -18,7 +18,7 @@ export const notices = [
     type: "Academic",
     target: "All Displays",
     status: "Active",
-    createdBy: "Admin ",
+    createdBy: "Admin",
   },
 
   {

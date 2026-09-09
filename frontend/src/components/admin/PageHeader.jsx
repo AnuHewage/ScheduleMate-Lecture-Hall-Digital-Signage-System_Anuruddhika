@@ -5,8 +5,22 @@ export default function PageHeader({
   description,
   actionText,
   actionPath,
+  onAction,
 }) {
   const navigate = useNavigate();
+
+  const handleAction = () => {
+    // Modal open / custom action
+    if (onAction) {
+      onAction();
+      return;
+    }
+
+    // Page navigation
+    if (actionPath) {
+      navigate(actionPath);
+    }
+  };
 
   return (
     <div className="flex justify-between items-center">
@@ -40,7 +54,7 @@ export default function PageHeader({
 
       {actionText && (
         <button
-          onClick={() => navigate(actionPath)}
+          onClick={handleAction}
           className="
           bg-[#0b1220]
           text-white
